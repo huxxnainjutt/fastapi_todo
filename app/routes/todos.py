@@ -5,7 +5,7 @@ from ..models.todos import Todo, TodoUpdate, TodoComplete, TodoResponse
 from ..models.response import IResponse, PaginatedResponse
 from app.db import db
 from .. import oauth2
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,date
 from ..utils import CustomEncoder
 import json
 
@@ -16,12 +16,15 @@ router = APIRouter()
 async def get_all_todo(page: int = Query(default=1, ge=1),
                        limit: int = Query(default=10, le=50),
                        is_completed: bool = Query(None),
-                       current_date: datetime = Query(None), current_user=Depends(oauth2.get_current_user)):
+                       current_date: str = Query(None), current_user=Depends(oauth2.get_current_user)):
     try:
 
         if current_date is None:
             # If current_date is not provided, default to today's date
             current_date = datetime.now().date()
+        else:
+            # Parse the received string back into a date object
+            current_date = date.fromisoformat(current_date)
 
         # Calculate start and end of the current day
         start_of_day = datetime.combine(current_date, datetime.min.time())
