@@ -94,7 +94,7 @@ async def forgot_password(user_info: ForgetPasswordSchema):
             "id": str(user["_id"]),
         })
 
-        reset_link = f"http://locahost:8000/reset?token={jsonable_encoder(token)}"
+        reset_link = f"http://locahost:3000/reset?token={jsonable_encoder(token)}"
 
         print("Hello")
 
