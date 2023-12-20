@@ -54,6 +54,7 @@ class TodoResponse(BaseModel):
     is_completed: bool = Field(default=False)
     author: str = Field(...)
     created_at: str = Field(...)
+    id: str = Field(...,  alias="_id")
 
     class Config:
         allow_populate_by_name = True
