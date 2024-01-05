@@ -94,7 +94,7 @@ async def forgot_password(user_info: ForgetPasswordSchema):
             "id": str(user["_id"]),
         })
 
-        reset_link = f"http://localhost:3000/reset-password/{jsonable_encoder(token)}"
+        reset_link = f"https://todo-iota-wheat.vercel.app/reset-password/{jsonable_encoder(token)}"
 
         print("Hello")
 
