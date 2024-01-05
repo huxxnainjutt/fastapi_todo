@@ -23,11 +23,11 @@ async def signup(user: User = Body):
         if 'name' in user_info:
             user_info['name'] = user_info['name'].lower()
 
-        username_found = db["users"].find_one({"name": user_info["name"]})
+        # username_found = db["users"].find_one({"name": user_info["name"]})
         email_found = db["users"].find_one({"email": user_info["email"]})
-        if username_found:
-            raise HTTPException(status_code=status.HTTP_409_CONFLICT,
-                                detail="There already is a user by that name")
+        # if username_found:
+        #     raise HTTPException(status_code=status.HTTP_409_CONFLICT,
+        #                         detail="There already is a user by that name")
         if email_found:
             raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                                 detail="There already is a user by that email")
